@@ -7,6 +7,7 @@ description: Before each git commit, run /test and only allow the commit if lint
 
 - Prevent commits that have not passed lint or tests.
 - Use `/test` as a single, consistent quality gate.
+- Ensure Python checks always run inside the repository's `uv`-managed virtual environment.
 
 # When to use
 
@@ -18,7 +19,10 @@ description: Before each git commit, run /test and only allow the commit if lint
 1. Determine the repository root.
 2. Run the equivalent of the `/test` command:
    - Run `/lint` and ensure there are no blocking lint errors.
-   - Run `pytest` for the Python side.
+   - For the Python side, if a `pyproject.toml` is present:
+     - create or refresh the local `uv` environment as needed with `uv venv` and `uv sync`,
+     - run `uv run pytest`,
+     - avoid global Python or pip commands.
    - Run `cargo test` for the Rust side.
 3. If any step fails:
    - Summarize which step failed (lint / pytest / cargo test),

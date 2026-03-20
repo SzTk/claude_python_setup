@@ -20,7 +20,7 @@ See `./rules/project-structure.md` for details.
 - For performance testing and release builds, use `maturin develop --release` or `maturin build --release`.
 - If possible, consider using maturin’s import hook so the module is built automatically on import during development.
 
-See `./rules/build-and-devloop.md` for details.
+See `./rules/build-and-develop.md` for details.
 
 ## 3. Python–Rust boundary design
 
